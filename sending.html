@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TrazPay API Documentation</title>
+
+  <!-- Modernizer -->
+  <script src="/static/js/libs/modernizr-2.6.2.min.js"></script>
+
+  <!-- Framework CSS -->
+  <!-- [if gt IE 9]><!-->
+  <link type="text/css" rel="stylesheet" href="/static/css/groundwork.css">
+  <!-- <![endif] -->
+  <!-- [if lte IE 9]>
+  <link type="text/css" rel="stylesheet" href="/static/css/groundwork-ie.css">
+  <![endif] -->
+  <link type="text/css" rel="stylesheet" href="/static/css/style.css">
+
+</head>
+<body>
+  <div class="container">
+    <!-- ===================== HEADER ============================ -->
+    <header class="padded">
+      <div class="row">
+        <div class="one half">
+          <h2 class="logo">
+            <a href="/">
+                <img src="/static/img/logo.png" alt="TrazPay" />
+            </a>
+          </h2>
+        </div>
+      </div>
+    </header>
+    <hr />
+
+    <!-- ===================== CONTENT ============================ -->
+    <div class="row">
+      <aside class="one third padded border-right bounceInLeft animated">
+        <nav class="nav vertical blue" title="API Menu">
+          <ul role="menu">
+            <li><a href="/">Introduction</a></li>
+            <li><a href="/sending.html">Sending Transaction</a></li>
+            <li><a href="/status.html">Status Transaction</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <section class="two thirds padded bounceInDown animated">
+        
+<h2>Sending Your Transactions</h2>
+<h3>Introduction</h3>
+<p>
+  To sending your transactions, we encorage you to use jQuery's method <code>$.ajax()</code>
+  or <code>$.post()</code>.
+</p>
+<code class="block">
+  The API root URL is located at <a href="http://54.251.143.66:6543/api/view_invoice?callback=?&" target="_blank">http://54.251.143.66:6543/api/view_invoice?callback=?&</a>
+</code>
+
+<br />
+<p>
+  For more information about <code>$.ajax()</code> or <code>$.post()</code>, we suggest you to read jQuery documentation 
+  <a href="http://api.jquery.com/jQuery.post/" target="_blank">here</a> and <a href="http://api.jquery.com/jQuery.ajax/" target="_blank">here</a>
+</p>
+<br />
+
+<h3>Variables</h3>
+<table class="responsive" data-max="15">
+  <thead>
+    <tr>
+      <th>No. </th>
+      <th>Name</th>
+      <th>Variable Name</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1.</td>
+      <td>Merchant Id</td>
+      <td><strong class="red">merchant_id</strong></td>
+      <td>Your Merchant ID. This variable is <strong class="red" class="red">mandatory</strong>.</td>
+    </tr>
+    <tr>
+      <td>2.</td>
+      <td>Access Code</td>
+      <td><strong class="red">accesscode</strong></td>
+      <td>Your security access code. This variable is <strong class="red">mandatory</strong>.</td>
+    </tr>
+    <tr>
+      <td>3.</td>
+      <td>Invoice Number</td>
+      <td><strong class="red">invoice_no</strong></td>
+      <td>Invoice number of your transaction. This variable is <strong class="red">mandatory</strong>.</td>
+    </tr>
+    <tr>
+      <td>4.</td>
+      <td>Invoice Date</td>
+      <td><strong class="red">invoice_date</strong></td>
+      <td>Transaction date.  This variable is <strong class="red">mandatory</strong>.</td>
+    </tr>
+    <tr>
+      <td>5.</td>
+      <td>Invoice Date Expired</td>
+      <td>invoice_date_expired</td>
+      <td>Date the transaction will expired. </td>
+    </tr>
+    <tr>
+      <td>6.</td>
+      <td>Customer Name</td>
+      <td><strong class="red">customer_name</strong></td>
+      <td>Your customer name for the transaction. This variable is <strong class="red">mandatory</strong>.</td>
+    </tr>
+    <tr>
+      <td>7.</td>
+      <td>Customer Address</td>
+      <td>customer_address</td>
+      <td>Your customer address for the transaction.</td>
+    </tr>
+    <tr>
+      <td>8.</td>
+      <td>Customer Email</td>
+      <td><strong class="red">customer_email</strong></td>
+      <td>Your customer email address for the transaction. This variable is <strong class="red">mandatory</strong>.</td>
+    </tr>
+    <tr>
+      <td>9.</td>
+      <td>Customer Phone</td>
+      <td>customer_phone</td>
+      <td>Your customer phone for the transaction.</td>
+    </tr>
+    <tr>
+      <td>10.</td>
+      <td>Total Billing</td>
+      <td><strong class="red">total_bill</strong></td>
+      <td>Your total billing per transaction. This variable is <strong class="red">mandatory</strong>.</td>
+    </tr>
+    <tr>
+      <td>11.</td>
+      <td>Items</td>
+      <td>items</td>
+      <td>Items that your customer bought. Please follow this format: <em>item_name,price,qty,price*qty</em>.
+      If the item more than one, please use '\\n' as the separator to the next line (without quotes).</td>
+    </tr>
+    <tr>
+      <td>12.</td>
+      <td>URL Destination</td>
+      <td>destination</td>
+      <td>Your website's destination after transaction finished. Usually it goes to your thank you page. This variable is <strong class="red">mandatory</strong>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+<p>
+Note: All date variables must using yyyy-mm-dd format. For example 2013-12-31.
+</p>
+
+<br />
+<p><h4>Code example:</h4>
+Put this javascript code into your confirmation page, or after confirmation page.
+This code will give you the destination URL into TrazPay confirmation payment page.
+After user confirm the payment, they will automatically send into your desired URL page.
+
+  <div class="row">
+    <div class="one whole padded">
+      <code class="block">
+        <pre>$(document).ready(function() {
+    var data = {};
+    data = {
+      merchant_id: "123",
+      accesscode: "ABCDE123",
+      invoice_date: "2013-10-30",
+      customer_address: "Jl. Jend. Sudirman No. 10, Jakarta",
+      invoice_no: "xx/123/2013",
+      customer_name: "Giorgio Derrezed",
+      customer_email: "giorgio@gmail.com",
+      total_bill: "1150000",
+      items: "Synth MOOC 2,150000,1,150000\\nDrum Mechanics, 500000,2,1000000",
+      destination: "http://www.trazshop.com/thanks_page.php"
+    };
+
+    $.ajax({
+      url: "http://54.251.143.66:6543/api/view_invoice?callback=?",
+      data: data,
+      type: "POST",
+      crossDomain: true,
+      async: false,
+      dataType: 'jsonp',
+      contentType: "application/javascript",
+      success: function(results){
+        if(results.destination)
+          window.location.href = results.destination;
+      },
+      error: function(xhr, errorStatus, textError){
+        console.log(errorStatus + ": " + textError);
+      }
+    });
+  });</pre>
+      </code>
+    </div>
+  </div>
+</p>
+
+<br />
+
+<h3>Return Data</h3>
+
+<p>
+If the sending process succeeded, it will return reference_id and destination to redirect to TrazPay confirmation page. <br /><br />
+
+  Example of return data:
+  <div class="row">
+    <div class="one whole padded">
+      <code class="block">
+        <pre>{
+  status="ok",
+  destination="http://54.251.143.66:6543/view_invoice/42/http%3A__54.254.144.36_prestashop_",
+  reference_id="01102013531"
+}</pre>
+      </code>
+    </div>
+  </div>
+</p>
+<br />
+<p>
+  Otherwise, if it error, please read the error message on your javascript console.log error message.
+  <br /><br />
+  [maybe image of error message here.]
+</p>
+
+<br />
+
+<div class="flipInX animated align-right">
+  <p>
+    <a class="blue button" rel="prev" href="/">Prev: Intro</a>
+    <a class="green button" rel="next" href="/status.html">Next: Status</a>
+  </p>
+</div>
+
+      </section>
+    </div>
+
+    <!-- ======================= FOOTER =========================== -->
+    <footer class="gap-top bounceInUp animated">
+      <div class="box square">
+        <div class="container">
+          <div class="row">
+            <div class="one half padded">
+              <p>
+                <a href="mailto:developer@trazpay.com">Give a shout out</a>
+                if you have any feedback.
+              </p>
+            </div>
+            <div class="one half padded">
+              <p class="large padded align-right align-center-small-tablet">
+                <a class="large inline" title="@trazpay" target="_blank" href="http://github.com/trazpay"></a>
+                <a class="large inline" title="@trazpay" target="_blank" href="http://twitter.com/trazpay"></a>
+                <a class="large inline" title="eveloper@trazpay.com" href="mailto:developer@trazpay.com"></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </footer>
+
+  </div>
+  <script src="/static/js/libs/jquery-1.10.2.min.js"></script>
+  <script src="/static/js/groundwork.all.js"></script>
+</body>
+</html>

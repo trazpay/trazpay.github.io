@@ -1,0 +1,3 @@
+a[href*="@trazpay.com"]:not(.noicon):not(.green):not(.blue):not(.purple):not(.yellow):not(.orange):not(.red):not(.pink):not(.turquoise):not(.asphalt):not(.charcoal):not(.white):not(.black):before {
+  color: #E54C3B;
+}

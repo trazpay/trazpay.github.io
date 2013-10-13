@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TrazPay API Documentation</title>
+
+  <!-- Modernizer -->
+  <script src="/static/js/libs/modernizr-2.6.2.min.js"></script>
+
+  <!-- Framework CSS -->
+  <!-- [if gt IE 9]><!-->
+  <link type="text/css" rel="stylesheet" href="/static/css/groundwork.css">
+  <!-- <![endif] -->
+  <!-- [if lte IE 9]>
+  <link type="text/css" rel="stylesheet" href="/static/css/groundwork-ie.css">
+  <![endif] -->
+  <link type="text/css" rel="stylesheet" href="/static/css/style.css">
+
+</head>
+<body>
+  <div class="container">
+    <!-- ===================== HEADER ============================ -->
+    <header class="padded">
+      <div class="row">
+        <div class="one half">
+          <h2 class="logo">
+            <a href="/">
+                <img src="/static/img/logo.png" alt="TrazPay" />
+            </a>
+          </h2>
+        </div>
+      </div>
+    </header>
+    <hr />
+
+    <!-- ===================== CONTENT ============================ -->
+    <div class="row">
+      <aside class="one third padded border-right bounceInLeft animated">
+        <nav class="nav vertical blue" title="API Menu">
+          <ul role="menu">
+            <li><a href="/">Introduction</a></li>
+            <li><a href="/sending.html">Sending Transaction</a></li>
+            <li><a href="/status.html">Status Transaction</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <section class="two thirds padded bounceInDown animated">
+        
+<h3>Get Payment Status</h3>
+<p>
+  If you want to know the payment status of your users, you could use this API.
+
+  <code class="block">
+    This API root URL is located at <a href="http://54.251.143.66:6543/api/billing/status/" target="_blank">http://54.251.143.66:6543/api/billing/status/</a>
+  </code>
+
+  <h4>Code example:</h4>
+  <div class="row">
+    <div class="one whole padded"><code class="block"><pre>
+$(document).ready(function() {
+  var merchant_id = '123';
+  $.ajax({
+    url: "http://54.251.143.66:6543/api/billing/status/" + merchant_id,
+
+  });
+};
+    </pre></code></div>
+  </div>
+
+  You'lc get return data something like below:
+  <div class="row">
+    <div class="one whole padded"><code class="block"><pre>
+[
+  {
+    "merchant": "Brand Dot Com",
+    "inv_date": "2013-09-30",
+    "status": "Unpay",
+    "bill_amount": 22000002,
+    "paid_amount": 0,
+    "payment_date": "None",
+    "va": "status/8802221239919808",
+    "cust_name": "Riza Fahmi",
+    "inv_no": "0"
+  },
+{
+    "merchant": "Brand Dot Com",
+    "inv_date": "2013-09-30",
+    "status": "Unconfirm",
+    "bill_amount": 3300002,
+    "paid_amount": 0,
+    "payment_date": "None",
+    "va": "status/8802221231422026",
+    "cust_name": "Riza Fahmi",
+    "inv_no": "0"
+  }
+]
+    </pre></code></div>
+  </div>
+
+</p>
+
+<div class="flipInX animated align-right">
+  <p>
+  <a class="blue button" rel="prev" href="/sending.html">Prev: Sending</a>
+  </p>
+</div>
+
+      </section>
+    </div>
+
+    <!-- ======================= FOOTER =========================== -->
+    <footer class="gap-top bounceInUp animated">
+      <div class="box square">
+        <div class="container">
+          <div class="row">
+            <div class="one half padded">
+              <p>
+                <a href="mailto:developer@trazpay.com">Give a shout out</a>
+                if you have any feedback.
+              </p>
+            </div>
+            <div class="one half padded">
+              <p class="large padded align-right align-center-small-tablet">
+                <a class="large inline" title="@trazpay" target="_blank" href="http://github.com/trazpay"></a>
+                <a class="large inline" title="@trazpay" target="_blank" href="http://twitter.com/trazpay"></a>
+                <a class="large inline" title="eveloper@trazpay.com" href="mailto:developer@trazpay.com"></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </footer>
+
+  </div>
+  <script src="/static/js/libs/jquery-1.10.2.min.js"></script>
+  <script src="/static/js/groundwork.all.js"></script>
+</body>
+</html>
