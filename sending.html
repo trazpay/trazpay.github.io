@@ -53,7 +53,7 @@
   or <code>$.post()</code>.
 </p>
 <code class="block">
-  The API root URL is located at <a href="http://54.251.143.66:6543/api/view_invoice?callback=?&" target="_blank">http://54.251.143.66:6543/api/view_invoice?callback=?&</a>
+  The API root URL is located at <a href="http://tpms.trazpay.com/api/view_invoice?callback=?&" target="_blank">http://tpms.trazpay.com/api/view_invoice?callback=?&</a>
 </code>
 
 <br />
@@ -180,7 +180,7 @@ After user confirm the payment, they will automatically send into your desired U
     };
 
     $.ajax({
-      url: "http://54.251.143.66:6543/api/view_invoice?callback=?",
+      url: "http://tpms.trazpay.com/api/view_invoice?callback=?",
       data: data,
       type: "POST",
       crossDomain: true,
@@ -214,7 +214,7 @@ If the sending process succeeded, it will return reference_id and destination to
       <code class="block">
         <pre>{
   status="ok",
-  destination="http://54.251.143.66:6543/view_invoice/42/http%3A__54.254.144.36_prestashop_",
+  destination="http://tpms.trazpay.com/view_invoice/42/http%3A__54.254.144.36_prestashop_",
   reference_id="01102013531"
 }</pre>
       </code>
